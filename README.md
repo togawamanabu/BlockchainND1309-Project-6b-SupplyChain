@@ -18,16 +18,16 @@
 ## UML diagrams
 
 ### Activity
-![Activity](./uml/activity.png) 
+![Activity](./UML/activity.png) 
 
 ### Sequence
-![Sequence](./uml/sequence.png) 
+![Sequence](./UML/sequence.png) 
 
 ### State
-![State](./uml/state.png) 
+![State](./UML/state.png) 
 
 ### Classes(Data Model)
-![data](./uml/data.png) 
+![data](./UML/data.png) 
 
 ## Libraries 
 
