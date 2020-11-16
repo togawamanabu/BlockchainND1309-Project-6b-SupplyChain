@@ -3,10 +3,8 @@ pragma solidity ^0.5.16;
 // Import the library 'Roles'
 import "./Roles.sol";
 
-import "../coffeebase/SupplyChain.sol";
-
 // Define a contract 'FarmerRole' to manage this role - add, remove, check
-contract FarmerRole is SupplyChain {
+contract FarmerRole  {
   using Roles for Roles.Role;
 
   // Define 2 events, one for Adding, and other for Removing
