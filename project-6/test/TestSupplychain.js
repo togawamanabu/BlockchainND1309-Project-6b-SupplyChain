@@ -43,7 +43,7 @@ contract('SupplyChain', function(accounts) {
 
     it('add roles', async() => {
         const supplyChain = await SupplyChain.deployed()
-        
+
         await supplyChain.addFarmer(originFarmerID)
         await supplyChain.addDistributor(distributorID)
         await supplyChain.addRetailer(retailerID)
@@ -55,7 +55,8 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed()
         
         // Mark an item as Harvested by calling function harvestItem()
-        let res = await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation, originFarmLatitude, originFarmLongitude, productNotes);
+        let res = await supplyChain.harvestItem(upc, originFarmerID, originFarmName, originFarmInformation, 
+            originFarmLatitude, originFarmLongitude, productNotes, {from: originFarmerID});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferOne = await supplyChain.fetchItemBufferOne.call(upc)
@@ -81,7 +82,7 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed()
         
         // Mark an item as Processed by calling function processtItem()
-        let res = await supplyChain.processItem(upc);
+        let res = await supplyChain.processItem(upc, {from: originFarmerID});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
@@ -100,7 +101,7 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed()
         
         // Mark an item as Packed by calling function packItem()
-        let res = await supplyChain.packItem(upc);
+        let res = await supplyChain.packItem(upc, {from: originFarmerID});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
@@ -119,7 +120,7 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed()
         
         // Mark an item as ForSale by calling function sellItem()
-        let res = await supplyChain.sellItem(upc, productPrice);
+        let res = await supplyChain.sellItem(upc, productPrice, {from: originFarmerID});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)
@@ -166,7 +167,7 @@ contract('SupplyChain', function(accounts) {
         const supplyChain = await SupplyChain.deployed()
         
         // Mark an item as Sold by calling function shipItem()
-        let res = await supplyChain.shipItem(upc);
+        let res = await supplyChain.shipItem(upc, {from: distributorID});
 
         // Retrieve the just now saved item from blockchain by calling function fetchItem()
         const resultBufferTwo = await supplyChain.fetchItemBufferTwo.call(upc)

@@ -197,7 +197,7 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
   // Call modifier to check if upc has passed previous supply chain stage
   harvested(_upc)
   // Call modifier to verify caller of this function
-  verifyCaller(msg.sender)
+  verifyCaller(items[_upc].ownerID)
   {
     // Update the appropriate fields
     items[_upc].itemState = State.Processed;
@@ -212,7 +212,7 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
   // Call modifier to check if upc has passed previous supply chain stage
   processed(_upc)
   // Call modifier to verify caller of this function
-  verifyCaller(msg.sender)
+  verifyCaller(items[_upc].ownerID)
   {
     // Update the appropriate fields
     items[_upc].itemState = State.Packed;
@@ -227,7 +227,7 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
   // Call modifier to check if upc has passed previous supply chain stage
   packed(_upc)
   // Call modifier to verify caller of this function
-  verifyCaller(msg.sender)
+  verifyCaller(items[_upc].ownerID)
   {
     // Update the appropriate fields
     items[_upc].productPrice = _price;
@@ -272,7 +272,7 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
     // Call modifier to check if upc has passed previous supply chain stage
     sold(_upc)
     // Call modifier to verify caller of this function
-    verifyCaller(msg.sender)
+    verifyCaller(items[_upc].ownerID)
     {
     // Update the appropriate fields
     items[_upc].itemState = State.Shipped; 
@@ -288,7 +288,6 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
     // Call modifier to check if upc has passed previous supply chain stage
     shipped(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
-    verifyCaller(msg.sender)
     {
     // Update the appropriate fields - ownerID, retailerID, itemState
     items[_upc].itemState = State.Received; 
@@ -306,7 +305,6 @@ contract SupplyChain is Ownable, ConsumerRole, DistributorRole, FarmerRole, Reta
     // Call modifier to check if upc has passed previous supply chain stage
     received(_upc)
     // Access Control List enforced by calling Smart Contract / DApp
-    verifyCaller(msg.sender)
     {
     // Update the appropriate fields - ownerID, consumerID, itemState
     items[_upc].itemState = State.Purchased; 
